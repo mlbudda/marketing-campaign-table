@@ -12,13 +12,11 @@ const FilterSection = () => {
     dispatch({ type: "campaign/startDateSet", payload: Date.parse(date) });
   };
 
-  // TODO add fail if start date less than end date
   const endDate = useSelector((state) => state.endDate);
   const setEndDate = (date) => {
     dispatch({ type: "campaign/endDateSet", payload: Date.parse(date) });
   };
 
-  // TODO add clear button to date range and search
   const setSearchKeyword = (event) => {
     dispatch({
       type: "campaign/searchKeywordSet",
