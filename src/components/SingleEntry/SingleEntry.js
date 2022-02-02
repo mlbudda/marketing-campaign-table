@@ -9,9 +9,13 @@ const SingleEntry = (props) => {
 
   const status =
     endTimestamp > todayTimestamp ? (
-      <span className="tag is-success is-light">Active</span>
+      <span aria-label="Active" className="tag is-success is-light">
+        Active
+      </span>
     ) : (
-      <span className="tag is-danger is-light">Inactive</span>
+      <span aria-label="Inactive" className="tag is-danger is-light">
+        Inactive
+      </span>
     );
 
   const user = props.userLoading ? (
