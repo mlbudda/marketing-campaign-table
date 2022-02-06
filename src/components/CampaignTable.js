@@ -1,8 +1,7 @@
 import TableHeader from "./TableHeader";
 import TableData from "./TableData";
 import FilterSection from "./FilterSection";
-import { useSelector } from "react-redux";
-// pass products from store as porps to enable testing
+import { useSelector, connect } from "react-redux";
 
 const CampaignTable = () => {
   const passProductFromState = useSelector((state) => state.campaignData);
@@ -11,6 +10,10 @@ const CampaignTable = () => {
     endDate: useSelector((state) => state.endDate),
   };
   const selectSearchKeyword = useSelector((state) => state.searchKeyword);
+  const userStatus = useSelector((state) => state.status);
+  const usersData = useSelector((state) => state.userData);
+  connect()(<TableData />);
+
   return (
     <div>
       <FilterSection />
@@ -24,6 +27,8 @@ const CampaignTable = () => {
             startDate={dateRange.startDate}
             endDate={dateRange.endDate}
             keyword={selectSearchKeyword}
+            userStatus={userStatus}
+            usersData={usersData}
           />
         </table>
       </div>
