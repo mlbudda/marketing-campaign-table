@@ -1,22 +1,14 @@
-// Test if shows with wrong date
+import React from "react";
+import ReactDOM from "react-dom";
 import TableData from "../components/TableData";
-import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 describe("<TableData />", () => {
-  it.skip("oke", () => {
-    const mockCampaigns = [{}];
-    const mockDate = {
-      startDate: "",
-      endDate: "",
-    };
-    render(
-      <TableData
-        selectProductFromState={mockCampaigns}
-        startDate={mockDate.startDate}
-        endDate={mockDate.endDate}
-      />
-    );
+  it("renders 'no data' when no data provided", () => {
+    const container = document.createElement("table");
+    const render = (component) => ReactDOM.render(component, container);
+    render(<TableData selectProductFromState={[]} />);
+    expect(container.textContent).toMatch("No data");
   });
 });
 
