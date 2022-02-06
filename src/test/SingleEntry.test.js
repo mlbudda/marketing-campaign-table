@@ -1,4 +1,4 @@
-import SingleEntry from "./SingleEntry";
+import SingleEntry from "../components/SingleEntry";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 

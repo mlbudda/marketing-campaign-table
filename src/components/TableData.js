@@ -1,40 +1,29 @@
 import { useEffect } from "react";
-import SingleEntry from "../SingleEntry/SingleEntry";
+import SingleEntry from "./SingleEntry";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUsers } from "../../app/campaignSlicer";
+import { fetchUsers } from "../app/campaignSlicer";
 
-const TableData = () => {
-  const selectProductFromState = useSelector((state) => state.campaignData);
+const TableData = (props) => {
+  const applyDateRangeFilter = props.selectProductFromState.filter(
+    (single) => {
+      const startDate = Date.parse(single.startDate);
+      const endDate = Date.parse(single.endDate);
 
-  const dateRange = {
-    startDate: useSelector((state) => state.startDate),
-    endDate: useSelector((state) => state.endDate),
-  };
-
-  const applyDateRangeFilter = selectProductFromState.filter((single) => {
-    const startDate = Date.parse(single.startDate);
-    const endDate = Date.parse(single.endDate);
-
-    if (endDate > startDate && (!dateRange.startDate || !dateRange.endDate)) {
-      return single;
-    } else {
-      if (startDate >= dateRange.startDate && startDate <= dateRange.endDate) {
+      if (endDate > startDate && (!props.startDate || !props.endDate)) {
         return single;
-      } else if (
-        endDate <= dateRange.endDate &&
-        endDate >= dateRange.startDate
-      ) {
-        return single;
+      } else {
+        if (startDate >= props.startDate && startDate <= props.endDate) {
+          return single;
+        } else if (endDate <= props.endDate && endDate >= props.startDate) {
+          return single;
+        }
+        return "";
       }
-      return "";
     }
-  });
+  );
 
-  const selectSearchKeyword = useSelector((state) => state.searchKeyword);
   const applySearchKeyword = applyDateRangeFilter.filter((single) => {
-    if (
-      single.name.toLowerCase().startsWith(selectSearchKeyword.toLowerCase())
-    ) {
+    if (single.name.toLowerCase().startsWith(props.keyword.toLowerCase())) {
       return single;
     }
     return "";
