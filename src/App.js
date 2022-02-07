@@ -1,5 +1,5 @@
 import { React } from "react";
-import CampaignTable from "./components/CampaignTable/CampaignTable";
+import CampaignTable from "./components/CampaignTable";
 import { useSelector, useDispatch } from "react-redux";
 
 function App() {

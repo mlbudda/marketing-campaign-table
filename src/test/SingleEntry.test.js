@@ -1,9 +1,10 @@
-import SingleEntry from "./SingleEntry";
+import React from "react";
+import SingleEntry from "../components/SingleEntry";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 describe("<SingleEntry />", () => {
-  it("SingleEntry, given props data, renders info correctly", () => {
+  it("given props data, renders info correctly", () => {
     render(
       <table>
         <tbody>
@@ -29,7 +30,7 @@ describe("<SingleEntry />", () => {
     expect(endDate).toBeInTheDocument();
     expect(budget).toBeInTheDocument();
   });
-  it("SingleEntry, status render active", () => {
+  it("given active campaign date, renders active status", () => {
     render(
       <table>
         <tbody>
@@ -49,7 +50,7 @@ describe("<SingleEntry />", () => {
     const statusActive = screen.getByLabelText(/active/i);
     expect(statusActive).toBeInTheDocument();
   });
-  it("SingleEntry, status render inactive", () => {
+  it("given inactive campaign date, renders inactive status", () => {
     render(
       <table>
         <tbody>
