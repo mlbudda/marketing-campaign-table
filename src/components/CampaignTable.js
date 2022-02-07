@@ -1,7 +1,7 @@
 import TableHeader from "./TableHeader";
 import TableData from "./TableData";
 import FilterSection from "./FilterSection";
-import { useSelector, connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 const CampaignTable = () => {
   const passProductFromState = useSelector((state) => state.campaignData);
@@ -12,7 +12,6 @@ const CampaignTable = () => {
   const selectSearchKeyword = useSelector((state) => state.searchKeyword);
   const userStatus = useSelector((state) => state.status);
   const usersData = useSelector((state) => state.userData);
-  connect()(<TableData />);
 
   return (
     <div>

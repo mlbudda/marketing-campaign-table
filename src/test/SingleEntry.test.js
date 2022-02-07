@@ -51,7 +51,7 @@ describe("<SingleEntry />", () => {
     const statusActive = screen.getByLabelText(/active/i);
     expect(statusActive).toBeInTheDocument();
   });
-  it("SingleEntry, status render inactive", () => {
+  it("given inactive campaign date, renders inactive status", () => {
     render(
       <table>
         <tbody>

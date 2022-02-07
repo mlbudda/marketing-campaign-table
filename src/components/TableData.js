@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import SingleEntry from "./SingleEntry";
 import { fetchUsers } from "../app/campaignSlicer";
+import { connect } from "react-redux";
 
-const TableData = (props, dispatch) => {
+const TableData = (props) => {
   const applyDateRangeFilter = props.selectProductFromState.filter(
     (single) => {
       const startDate = Date.parse(single.startDate);
@@ -28,11 +29,13 @@ const TableData = (props, dispatch) => {
     return "";
   });
 
+  const userStatus = props.userStatus;
+  const dispatch = props.dispatch;
   useEffect(() => {
-    if (props.userStatus === "idle") {
+    if (userStatus === "idle") {
       dispatch(fetchUsers());
     }
-  }, [props.userStatus, dispatch]);
+  }, [userStatus, dispatch]);
 
   const mapDataToComponent = applySearchKeyword.map((single, key) => {
     const mapUser = props.usersData.find((user) => user.id === single.userId);
@@ -51,16 +54,16 @@ const TableData = (props, dispatch) => {
     );
   });
   const tableHasData =
-    !mapDataToComponent.length === 0 ? (
-      <tbody>{mapDataToComponent}</tbody>
-    ) : (
+    mapDataToComponent.length === 0 ? (
       <tbody>
         <tr>
           <td>No data</td>
         </tr>
       </tbody>
+    ) : (
+      <tbody>{mapDataToComponent}</tbody>
     );
   return tableHasData;
 };
 
-export default TableData;
+export default connect()(TableData);
