@@ -40,7 +40,7 @@ const TableData = (props) => {
   const mapDataToComponent = applySearchKeyword.map((single, key) => {
     const mapUser = props.usersData.find((user) => user.id === single.userId);
     const user = mapUser ? mapUser.name : "Unknown User";
-    const loading = props.userStatus === "loading" ? true : false;
+    const loading = userStatus === "loading" ? true : false;
     return (
       <SingleEntry
         key={key}

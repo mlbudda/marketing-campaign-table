@@ -4,14 +4,8 @@ import FilterSection from "./FilterSection";
 import { useSelector } from "react-redux";
 
 const CampaignTable = () => {
-  const passProductFromState = useSelector((state) => state.campaignData);
-  const dateRange = {
-    startDate: useSelector((state) => state.startDate),
-    endDate: useSelector((state) => state.endDate),
-  };
-  const selectSearchKeyword = useSelector((state) => state.searchKeyword);
-  const userStatus = useSelector((state) => state.status);
-  const usersData = useSelector((state) => state.userData);
+  const { campaignData, startDate, endDate, searchKeyword, status, userData } =
+    useSelector((state) => state);
 
   return (
     <div>
@@ -22,12 +16,12 @@ const CampaignTable = () => {
             <TableHeader />
           </thead>
           <TableData
-            selectProductFromState={passProductFromState}
-            startDate={dateRange.startDate}
-            endDate={dateRange.endDate}
-            keyword={selectSearchKeyword}
-            userStatus={userStatus}
-            usersData={usersData}
+            selectProductFromState={campaignData}
+            startDate={startDate}
+            endDate={endDate}
+            keyword={searchKeyword}
+            userStatus={status}
+            usersData={userData}
           />
         </table>
       </div>
